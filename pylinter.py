@@ -179,12 +179,12 @@ class PylSet(object):
             python_bin = cls.get_or('python_bin', 'python')
             pylint_path = cls.get_or('pylint_path', None)
             if pylint_path is None:
-                _ = subprocess.Popen("pylint",
+                _ = subprocess.Popen("pylint2",
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE,
                                  startupinfo=STARTUPINFO)
                 speak("Pylint executable found")
-                return ["pylint"]
+                return ["pylint2"]
             else:
                 return [python_bin, pylint_path]
         except OSError:
@@ -231,7 +231,7 @@ class PylSet(object):
         python_bin = cls.get_or('python_bin', 'python')
         found = None
 
-        regex = re.compile(b"[lint.py|pylint] ([0-9]+).([0-9]+).([0-9]+)")
+        regex = re.compile(b"[lint.py|pylint|pylint2] ([0-9]+).([0-9]+).([0-9]+)")
 
         if pylint_path:
             command = [python_bin, pylint_path]
